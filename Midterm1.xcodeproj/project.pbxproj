@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9606309E233AD0360013BD6F /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9606309D233AD0360013BD6F /* MapViewController.swift */; };
+		960630A0233ADCF20013BD6F /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9606309F233ADCF20013BD6F /* TableViewController.swift */; };
 		9623086E233190FC00B02247 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9623086D233190FC00B02247 /* AppDelegate.swift */; };
 		96230870233190FC00B02247 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9623086F233190FC00B02247 /* ViewController.swift */; };
 		96230873233190FC00B02247 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 96230871233190FC00B02247 /* Main.storyboard */; };
@@ -15,6 +17,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		9606309D233AD0360013BD6F /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
+		9606309F233ADCF20013BD6F /* TableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
 		9623086A233190FC00B02247 /* Midterm1.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Midterm1.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9623086D233190FC00B02247 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9623086F233190FC00B02247 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -60,6 +64,8 @@
 				96230874233190FD00B02247 /* Assets.xcassets */,
 				96230876233190FD00B02247 /* LaunchScreen.storyboard */,
 				96230879233190FD00B02247 /* Info.plist */,
+				9606309D233AD0360013BD6F /* MapViewController.swift */,
+				9606309F233ADCF20013BD6F /* TableViewController.swift */,
 			);
 			path = Midterm1;
 			sourceTree = "<group>";
@@ -136,7 +142,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				96230870233190FC00B02247 /* ViewController.swift in Sources */,
+				9606309E233AD0360013BD6F /* MapViewController.swift in Sources */,
 				9623086E233190FC00B02247 /* AppDelegate.swift in Sources */,
+				960630A0233ADCF20013BD6F /* TableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
