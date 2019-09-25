@@ -15,4 +15,6 @@ class MapViewController: UIViewController {
     override func viewDidLoad(){
         super.viewDidLoad()
     }
+    @IBAction func AddLocation(_ sender: Any) {
+    }
 }

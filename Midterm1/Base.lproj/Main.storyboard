@@ -26,7 +26,11 @@
                     </view>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="KaT-eH-brW" userLabel="Navigation Item">
-                        <barButtonItem key="rightBarButtonItem" title="Add" image="plus" catalog="system" id="ZyN-Ek-lIU"/>
+                        <barButtonItem key="rightBarButtonItem" title="Add" image="plus" catalog="system" id="ZyN-Ek-lIU">
+                            <connections>
+                                <action selector="AddLocation:" destination="PZM-G6-jUj" id="ufn-bS-McM"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
@@ -36,22 +40,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vT6-8m-jqD" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1360.8695652173915" y="872.54464285714278"/>
-        </scene>
-        <!--Item 1-->
-        <scene sceneID="XPF-B7-cIb">
-            <objects>
-                <viewController id="TvA-6o-6dg" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="ogt-3z-dI0">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                        <viewLayoutGuide key="safeArea" id="Vvg-yP-7fp"/>
-                    </view>
-                    <tabBarItem key="tabBarItem" title="Item 1" id="RtY-vD-0i4"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Ea5-4r-C0r" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="452" y="210"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="udG-5h-S8t">
@@ -63,7 +51,7 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>
                     <connections>
-                        <segue destination="TvA-6o-6dg" kind="relationship" relationship="viewControllers" id="rQb-lR-BCa"/>
+                        <segue destination="Oo2-A1-qxf" kind="relationship" relationship="viewControllers" id="rQb-lR-BCa"/>
                         <segue destination="ulZ-Y8-pAw" kind="relationship" relationship="viewControllers" id="cB8-LN-Lvj"/>
                     </connections>
                 </tabBarController>
@@ -75,7 +63,7 @@
         <scene sceneID="gvX-Gc-vG3">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="ulZ-Y8-pAw" userLabel="Map" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item 2" id="zAy-Bf-Wby"/>
+                    <tabBarItem key="tabBarItem" title="Map" image="map" catalog="system" id="zAy-Bf-Wby"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="eS8-Zq-DFH">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
@@ -90,8 +78,58 @@
             </objects>
             <point key="canvasLocation" x="450.72463768115944" y="872.54464285714278"/>
         </scene>
+        <!--LocationHistory-->
+        <scene sceneID="YYO-tu-QfJ">
+            <objects>
+                <navigationController title="LocationHistory" automaticallyAdjustsScrollViewInsets="NO" id="Oo2-A1-qxf" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="List" image="clock" catalog="system" id="RtY-vD-0i4"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="eNr-yj-KGr">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="OKN-iG-bJk" kind="relationship" relationship="rootViewController" id="lnh-ZD-cuO"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="knO-PH-09n" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="450.72463768115944" y="209.59821428571428"/>
+        </scene>
+        <!--Location History-->
+        <scene sceneID="chb-a7-JZ2">
+            <objects>
+                <tableViewController id="OKN-iG-bJk" customClass="TableViewController" customModule="Midterm1" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="TTl-HW-zPR">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="4VR-2M-rW1">
+                                <rect key="frame" x="0.0" y="28" width="414" height="43.5"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="4VR-2M-rW1" id="FZ5-KE-R4W">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="OKN-iG-bJk" id="yE1-yN-Mmi"/>
+                            <outlet property="delegate" destination="OKN-iG-bJk" id="W4w-G2-UDU"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Location History" id="2zn-1F-dh7"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="YkN-Ui-ZxT" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1361" y="210"/>
+        </scene>
     </scenes>
     <resources>
+        <image name="clock" catalog="system" width="64" height="62"/>
+        <image name="map" catalog="system" width="64" height="58"/>
         <image name="plus" catalog="system" width="64" height="58"/>
     </resources>
 </document>

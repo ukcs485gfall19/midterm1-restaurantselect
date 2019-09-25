@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		9606309E233AD0360013BD6F /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9606309D233AD0360013BD6F /* MapViewController.swift */; };
 		960630A0233ADCF20013BD6F /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9606309F233ADCF20013BD6F /* TableViewController.swift */; };
+		960630A2233AE1DA0013BD6F /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 960630A1233AE1DA0013BD6F /* Location.swift */; };
+		960630A4233AE2030013BD6F /* LocationStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 960630A3233AE2030013BD6F /* LocationStorage.swift */; };
 		9623086E233190FC00B02247 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9623086D233190FC00B02247 /* AppDelegate.swift */; };
 		96230870233190FC00B02247 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9623086F233190FC00B02247 /* ViewController.swift */; };
 		96230873233190FC00B02247 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 96230871233190FC00B02247 /* Main.storyboard */; };
@@ -19,6 +21,8 @@
 /* Begin PBXFileReference section */
 		9606309D233AD0360013BD6F /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		9606309F233ADCF20013BD6F /* TableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
+		960630A1233AE1DA0013BD6F /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
+		960630A3233AE2030013BD6F /* LocationStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationStorage.swift; sourceTree = "<group>"; };
 		9623086A233190FC00B02247 /* Midterm1.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Midterm1.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9623086D233190FC00B02247 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9623086F233190FC00B02247 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -66,6 +70,8 @@
 				96230879233190FD00B02247 /* Info.plist */,
 				9606309D233AD0360013BD6F /* MapViewController.swift */,
 				9606309F233ADCF20013BD6F /* TableViewController.swift */,
+				960630A1233AE1DA0013BD6F /* Location.swift */,
+				960630A3233AE2030013BD6F /* LocationStorage.swift */,
 			);
 			path = Midterm1;
 			sourceTree = "<group>";
@@ -141,8 +147,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				960630A4233AE2030013BD6F /* LocationStorage.swift in Sources */,
 				96230870233190FC00B02247 /* ViewController.swift in Sources */,
 				9606309E233AD0360013BD6F /* MapViewController.swift in Sources */,
+				960630A2233AE1DA0013BD6F /* Location.swift in Sources */,
 				9623086E233190FC00B02247 /* AppDelegate.swift in Sources */,
 				960630A0233ADCF20013BD6F /* TableViewController.swift in Sources */,
 			);
