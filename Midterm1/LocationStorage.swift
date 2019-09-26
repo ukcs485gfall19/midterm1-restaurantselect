@@ -6,15 +6,6 @@
 //  Copyright © 2019 Jonathan Moore. All rights reserved.
 //
 
-import Foundation
-import CoreLocation
-
-class Location: Codable{
-    let latitude: Double
-    let longitude: Double
-    let date: Date
-    let dateString: String
-    let description: String
-    
+class LocationStorage {
     
 }
