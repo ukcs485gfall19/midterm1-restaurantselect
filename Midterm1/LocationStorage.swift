@@ -9,6 +9,9 @@ import Foundation
 import CoreLocation
 
 class LocationStorage {
+    //Make singleton for usage in app
+    static let shared = LocationStorage()
+    
     private let fileManager: FileManager
     private let documentsURL: URL
     private var locations: [Location]
@@ -20,6 +23,7 @@ class LocationStorage {
         //Functions defines the file storage to be in the user's home directory
         //Also, disables error propagation on the function.
         documentsURL = try! fileManager.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: false)
+        //Initiaalize locations as empty
         locations = []
     }
 }
