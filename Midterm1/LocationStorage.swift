@@ -14,7 +14,7 @@ class LocationStorage {
     
     private let fileManager: FileManager
     private let documentsURL: URL
-    private var locations: [Location]
+    var locations: [Location]
     
     init(){
         //Set up the fileManager to be equal to the shared FileManager object
