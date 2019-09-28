@@ -9,8 +9,8 @@
 import Foundation
 import CoreLocation
 
-/*
-Borrowed code from https://stackoverflow.com/questions/49388372/codable-extension-to-corelocation-classes
+ /*
+ Borrowed code from https://stackoverflow.com/questions/49388372/codable-extension-to-corelocation-classes
  to make CLLocationCoordinate2D codable.
  */
 extension CLLocationCoordinate2D: Codable {
@@ -40,21 +40,21 @@ class Location: Codable{
     let dateString: String
     let description: String
     var coordinates: CLLocationCoordinate2D
-    
-    let dateFormatter: DateFormatter = {() -> DateFormatter in
+    //Create a formatter to allow conversion from CLLocationCoordinate2D to String.
+    static let dateFormatter: DateFormatter = {() -> DateFormatter in
         let df = DateFormatter()
         df.dateStyle = .medium
         df.timeStyle = .medium
         return df
     }()
-    
         
     init(_ initialCoordinates: CLLocationCoordinate2D, initialDate: Date, locationDescription: String){
         latitude = initialCoordinates.latitude
         longitude = initialCoordinates.longitude
         coordinates = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
         date = initialDate
-        
+        dateString = Location.dateFormatter.string(from: initialDate)
+        description = locationDescription
     }
 
 }
