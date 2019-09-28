@@ -23,7 +23,7 @@ class LocationStorage {
         //Functions defines the file storage to be in the user's home directory
         //Also, disables error propagation on the function.
         documentsURL = try! fileManager.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: false)
-        //Initiaalize locations as empty
+        //Initialize locations as empty
         locations = []
     }
 }
