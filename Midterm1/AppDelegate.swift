@@ -20,7 +20,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         let center = UNUserNotificationCenter.current()
         let locationManager = CLLocationManager()
-
         return true
     }
 
