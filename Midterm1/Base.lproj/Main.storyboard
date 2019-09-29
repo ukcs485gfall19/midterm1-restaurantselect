@@ -26,6 +26,11 @@
                     </view>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="KaT-eH-brW" userLabel="Navigation Item">
+                        <barButtonItem key="leftBarButtonItem" title="Find Food" id="EAr-Yj-gnI">
+                            <connections>
+                                <action selector="findFood:" destination="PZM-G6-jUj" id="zWu-ih-dQm"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Add" image="plus" catalog="system" id="ZyN-Ek-lIU">
                             <connections>
                                 <action selector="AddLocation:" destination="PZM-G6-jUj" id="ufn-bS-McM"/>
