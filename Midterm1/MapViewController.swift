@@ -36,11 +36,14 @@ class MapViewController: UIViewController {
                     return
             }
             do{
+                let result = try JSONDecoder().decode(BusinessInfo.self, from: yelpData)
+                print(result)
+                /*
                 if let jsonData = try JSONSerialization.jsonObject(with: yelpData, options: []) as? [String:Any]{
-                    if let businessName = jsonData["name"] as? [String]{
-                        print(businessName)
-                    }
+                    let jsonDecoder = JSONDecoder()
+                    let businesses = try? jsonDecoder.decode(Array<BusinessInfo>.self, from: jsonData)
                 }
+                */
             } catch let parsingError as NSError{
                 print("Error", parsingError)
             }
@@ -49,14 +52,3 @@ class MapViewController: UIViewController {
     }
 }
 
-struct BusinessInfo: Codable {
-    let rating: String
-    let price: String
-    let name: String
-    let distance: Double
-    
-    struct Coordinates {
-        let latitude: Double
-        let longitude: Double
-    }
-}
