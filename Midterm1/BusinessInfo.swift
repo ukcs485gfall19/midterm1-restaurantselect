@@ -64,6 +64,17 @@ struct BusinessInfo: Codable {
     
     let region: Region?
 }
+
+func findClosestBusiness(_ info: BusinessInfo) -> BusinessInfo.Business {
+    var closestBusiness: BusinessInfo.Business
+    closestBusiness = info.businesses[0]! //Set the closest business as the first one to start
+    for business in info.businesses {
+        if (business?.distance)! < closestBusiness.distance!{
+            closestBusiness = business!
+        }
+    }
+    return closestBusiness
+}
 /*
 func getBusinessInfo(_ latitude: Double, longitude: Double) -> Any {
     let apikey = yelpAPIKey
