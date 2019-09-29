@@ -8,13 +8,14 @@
 
 import UIKit
 import MapKit
+let yelpAPIKey = "6ffo9ft5YFWBCrVgiT76c516QE5RuxavdCvr-7o_oFD_kl5O9fZDNidhe0j7E7shxjrZimQlmkNJHuBOOR-Ic5ouF2-l9Be36RyfyuNEGuCZbquWa--8JNEAN9-PXXYx"
 
 class MapViewController: UIViewController {
     let latitude: Double = 37.8844
     let longitude: Double = -84.6135
+    var businesses: BusinessInfo = BusinessInfo(total: nil, businesses: [], region: nil)
     //let latitude = LocationStorage.shared.locations.last?.latitude //Replace later with current location
     //let longitude = LocationStorage.shared.locations.last?.longitude
-    let yelpAPIKey = "6ffo9ft5YFWBCrVgiT76c516QE5RuxavdCvr-7o_oFD_kl5O9fZDNidhe0j7E7shxjrZimQlmkNJHuBOOR-Ic5ouF2-l9Be36RyfyuNEGuCZbquWa--8JNEAN9-PXXYx"
     
     @IBOutlet weak var mapView: MKMapView! //Links the MKMapView into the storyboard
     override func viewDidLoad(){
@@ -37,13 +38,8 @@ class MapViewController: UIViewController {
             }
             do{
                 let result = try JSONDecoder().decode(BusinessInfo.self, from: yelpData)
-                print(result)
-                /*
-                if let jsonData = try JSONSerialization.jsonObject(with: yelpData, options: []) as? [String:Any]{
-                    let jsonDecoder = JSONDecoder()
-                    let businesses = try? jsonDecoder.decode(Array<BusinessInfo>.self, from: jsonData)
-                }
-                */
+                self.businesses = result
+                print(self.businesses)
             } catch let parsingError as NSError{
                 print("Error", parsingError)
             }

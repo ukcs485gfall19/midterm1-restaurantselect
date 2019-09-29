@@ -8,6 +8,8 @@
 
 import Foundation
 
+//let yelpAPIKey = "6ffo9ft5YFWBCrVgiT76c516QE5RuxavdCvr-7o_oFD_kl5O9fZDNidhe0j7E7shxjrZimQlmkNJHuBOOR-Ic5ouF2-l9Be36RyfyuNEGuCZbquWa--8JNEAN9-PXXYx"
+
 struct BusinessInfo: Codable {
     let total: Int?
     let businesses: [Business?]
@@ -62,3 +64,32 @@ struct BusinessInfo: Codable {
     
     let region: Region?
 }
+/*
+func getBusinessInfo(_ latitude: Double, longitude: Double) -> Any {
+    let apikey = yelpAPIKey
+    var result = BusinessInfo(total: 0, businesses: [], region: nil)
+    let url = URL(string: "https://api.yelp.com/v3/businesses/search?term=food&latitude=\(latitude)&longitude=\(longitude)")
+    var request = URLRequest(url: url!)
+    request.setValue("Bearer \(apikey)", forHTTPHeaderField: "Authorization")
+    request.httpMethod = "GET"
+    let task = URLSession.shared.dataTask(with: request){ (data, response, error) in
+        guard let yelpData = data,
+            error == nil else{
+                print(error?.localizedDescription ?? "Response Error")
+                return
+        }
+        do{
+            result = try JSONDecoder().decode(BusinessInfo.self, from: yelpData)
+            /*
+            if let jsonData = try JSONSerialization.jsonObject(with: yelpData, options: []) as? [String:Any]{
+                let jsonDecoder = JSONDecoder()
+                let businesses = try? jsonDecoder.decode(Array<BusinessInfo>.self, from: jsonData)
+            }
+            */
+        } catch let parsingError as NSError{
+            print("Error", parsingError)
+        }
+    }
+    task.resume()
+}
+ */
