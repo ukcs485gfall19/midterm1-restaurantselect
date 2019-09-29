@@ -68,7 +68,7 @@ extension AppDelegate: CLLocationManagerDelegate {
     func newVisitReceived(_ visit: CLVisit, description: String) {
         let location = Location(visit: visit, descriptionString: description)
         
-        
+        // need to work on where to add location init
         
         
         // Save location to disk
