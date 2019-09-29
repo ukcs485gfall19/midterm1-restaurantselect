@@ -20,6 +20,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         let center = UNUserNotificationCenter.current()
         let locationManager = CLLocationManager()
+        
+        center.requestAuthorization(options: [.alert, .sound]) { granted, error in
+        }// having issues with making banner not dissapear immediately after showing
+
+        locationManager.requestAlwaysAuthorization() // having issues with making banner not dissapear immediately after showing
+        locationManager.startMonitoringVisits()
+        locationManager.delegate = self
+        
+        
         return true
     }
 
@@ -47,4 +56,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
 }
+
+extension AppDelegate: CLLocationManagerDelegate {
+    func locationManager(_ manager: CLLocationManager, didVisit visit: CLVisit) {
+        // create CLLocation from the coordinates of CLVisit
+        let clLocation = CLLocation(latitude: visit.coordinate.latitude, longitude: visit.coordinate.longitude)
+        
+        // Get location description
+    }
+    
+    func newVisitReceived(_ visit: CLVisit, description: String) {
+        let location = Location(visit: visit, descriptionString: description)
+        
+        // need to work on where to add location init
+        
+        
+        // Save location to disk
+    }
+    
+}
+
 
