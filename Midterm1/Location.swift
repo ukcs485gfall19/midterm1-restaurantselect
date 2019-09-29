@@ -56,5 +56,8 @@ class Location: Codable{
         dateString = Location.dateFormatter.string(from: initialDate)
         description = locationDescription
     }
-
+    
+    convenience init(visit: CLVisit, descriptionString: String) {
+        self.init(visit.coordinate, initialDate: visit.arrivalDate, locationDescription: descriptionString)
+    }
 }
