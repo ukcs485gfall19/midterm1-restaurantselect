@@ -29,6 +29,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Asking the user for location use permission
         locationManager.startMonitoringVisits()
         locationManager.delegate = self
+        
+        // Receive location updates when location changes for 35+ meters
+        locationManager.distanceFilter = 35
+        
+        // Allow background location tracking
+        locationManager.allowsBackgroundLocationUpdates = true
+        
+        // Start listening
+        locationManager.startUpdatingLocation()
+        
         return true
     }
 
@@ -70,7 +80,61 @@ extension AppDelegate: CLLocationManagerDelegate {
         
     }
     
+    // handles fake visits
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        
+        // Discards all locations except the first
+        guard let location = locations.first else {
+            return
+        }
+        
+        // Grabs location description
+        AppDelegate.geoCoder.reverseGeocodeLocation(location) {
+            placemarks, _ in
+            if let place = placemarks?.first {
+                
+                // Marks visit as fake
+                let description = "Fake visit: \(place)"
+                
+                // Creates a FakeVisit instance and passes it to newVisitReceived
+                let fakeVisit = FakeVisit(
+                    coordinates: location.coordinate,
+                    arrivalDate: Date(),
+                    departureDate: Date())
+                self.newVisitReceived(fakeVisit, description: description)
+            }
+        }
+    }
+    
 }
 
-
+// subclass for fake CLVisits
+final class FakeVisit: CLVisit {
+    private let myCoordinates: CLLocationCoordinate2D
+    private let myArrivalDate: Date
+    private let myDepartureDate: Date
+    
+    override var coordinate: CLLocationCoordinate2D {
+        return myCoordinates
+    }
+    
+    override var arrivalDate: Date {
+        return myArrivalDate
+    }
+    
+    override var departureDate: Date {
+        return myDepartureDate
+    }
+    
+    init(coordinates: CLLocationCoordinate2D, arrivalDate: Date, departureDate: Date) {
+        myCoordinates = coordinates
+        myArrivalDate = arrivalDate
+        myDepartureDate = departureDate
+        super.init()
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+}
 
