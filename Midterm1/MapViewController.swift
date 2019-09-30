@@ -32,6 +32,7 @@ class MapViewController: UIViewController {
     override func viewDidLoad(){
         
         super.viewDidLoad()
+        mapView.userTrackingMode = .follow
         
         // generates pins from previous locations, adds to map
         let annotations = LocationStorage.shared.locations.map { annotationForLocation($0) }
