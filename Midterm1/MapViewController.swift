@@ -26,11 +26,24 @@ class CustomPin: NSObject, MKAnnotation{
 class MapViewController: UIViewController {
     var businesses: BusinessInfo = BusinessInfo(total: nil, businesses: [], region: nil)
     
-    
     @IBOutlet weak var mapView: MKMapView! //Links the MKMapView into the storyboard
+    
     override func viewDidLoad(){
+        
         super.viewDidLoad()
+        
+        // generates pins from previous locations, adds to map
+        let annotations = LocationStorage.shared.locations.map { annotationForLocation($0) }
+        mapView.addAnnotations(annotations)
+        
+        // listens for when a new location is recorded
+        NotificationCenter.default.addObserver(
+        self,
+        selector: #selector(newLocationAdded(_:)),
+        name: .newLocationSaved,
+        object: nil)
     }
+    
     @IBAction func AddLocation(_ sender: Any) {
         
         // save current location
@@ -76,5 +89,23 @@ class MapViewController: UIViewController {
         }
         task.resume()
     }
-}
+    
+    // create a pin annotation with a title and coordinates
+    func annotationForLocation(_ location: Location) -> MKAnnotation {
+        let annotation = MKPointAnnotation()
+        annotation.title = location.dateString
+        annotation.coordinate = location.coordinates
+        return annotation
+    }
 
+    // add a pin when a new location is logged
+    @objc func newLocationAdded(_ notification: Notification) {
+        guard let location = notification.userInfo?["location"] as?
+            Location else {
+                return
+        }
+        
+        let annotation = annotationForLocation(location)
+        mapView.addAnnotation(annotation)
+    }
+}
