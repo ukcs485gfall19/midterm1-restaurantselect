@@ -79,7 +79,7 @@ class MapViewController: UIViewController {
                 //Find the closest restaurant
                 let closestBusiness: BusinessInfo.Business = findClosestBusiness(self.businesses)
                 let location = CLLocationCoordinate2D(latitude: (closestBusiness.coordinates?.latitude)!, longitude: (closestBusiness.coordinates?.longitude)!)
-                let region = MKCoordinateRegion(center: location, span: MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.05))
+                let region = MKCoordinateRegion(center: location, span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01))
                 //Set the map to show the users location and make a pin for the closest restaurant
                 self.mapView.showsUserLocation = true;
                 self.mapView.setRegion(region, animated: true)
