@@ -8,6 +8,7 @@
 
 import UIKit
 import MapKit
+
 let yelpAPIKey = "6ffo9ft5YFWBCrVgiT76c516QE5RuxavdCvr-7o_oFD_kl5O9fZDNidhe0j7E7shxjrZimQlmkNJHuBOOR-Ic5ouF2-l9Be36RyfyuNEGuCZbquWa--8JNEAN9-PXXYx"
 
 //A class to create custom pins on the map
@@ -25,7 +26,6 @@ class CustomPin: NSObject, MKAnnotation{
 
 class MapViewController: UIViewController {
     var businesses: BusinessInfo = BusinessInfo(total: nil, businesses: [], region: nil)
-    
     
     @IBOutlet weak var mapView: MKMapView! //Links the MKMapView into the storyboard
     override func viewDidLoad(){
