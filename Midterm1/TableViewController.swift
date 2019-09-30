@@ -10,6 +10,24 @@ import UIKit
 
 class TableViewController: UITableViewController {
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        // register a method to be called when notification arrives
+        NotificationCenter.default.addObserver(
+        self,
+        selector: #selector(newLocationAdded(_:)),
+        name: .newLocationSaved,
+        object: nil)
+    }
+    
+    // receive notification as parameter
+    @objc func newLocationAdded(_ notification: Notification) {
+        
+        // reload list
+        tableView.reloadData()
+    }
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "PlaceCell", for: indexPath)
         let location = LocationStorage.shared.locations[indexPath.row]

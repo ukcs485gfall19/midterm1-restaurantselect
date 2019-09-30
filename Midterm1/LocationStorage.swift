@@ -66,6 +66,8 @@ class LocationStorage {
         
         // add saved location to local array
         locations.append(location)
+        
+        NotificationCenter.default.post(name: .newLocationSaved, object: self, userInfo: ["location": location])
     }
     
     func saveCLLocationToDisk(_ clLocation: CLLocation) {
@@ -74,7 +76,6 @@ class LocationStorage {
         placemarks, _ in
             if let place = placemarks?.first {
                 
-                // had to change this line from tutorial, was giving error as given
                 let location = Location(clLocation.coordinate, initialDate: currentDate, locationDescription: "\(place)")
                 
                 self.saveLocationOnDisk(location)
@@ -82,3 +83,7 @@ class LocationStorage {
         }
     }
 }
+
+    extension Notification.Name {
+        static let newLocationSaved = Notification.Name("newLocationSaved")
+    }
