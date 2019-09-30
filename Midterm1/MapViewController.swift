@@ -22,6 +22,13 @@ class MapViewController: UIViewController {
         super.viewDidLoad()
     }
     @IBAction func AddLocation(_ sender: Any) {
+        
+        // save current location
+        guard let currentLocation = mapView.userLocation.location else {
+            return
+        }
+        
+        LocationStorage.shared.saveCLLocationToDisk(currentLocation)
     }
     
     @IBAction func findFood(_ sender: UIBarButtonItem) {

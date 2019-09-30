@@ -23,7 +23,62 @@ class LocationStorage {
         //Functions defines the file storage to be in the user's home directory
         //Also, disables error propagation on the function.
         documentsURL = try! fileManager.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: false)
+        
         //Initialize locations as empty
-        locations = []
+        let jsonDecoder = JSONDecoder()
+        
+        // get URLs for all files in the Documents folder
+        let locationFilesURLs = try! fileManager.contentsOfDirectory(at: documentsURL, includingPropertiesForKeys: nil)
+        locations = locationFilesURLs.compactMap { url -> Location? in
+            
+            // skip .DS_Store
+            guard !url.absoluteString.contains(".DS_Store") else {
+                return nil
+            }
+            
+            // read data from file
+            guard let data = try? Data(contentsOf: url) else {
+                return nil
+            }
+            
+            // decode raw data in Location objects
+            return try? jsonDecoder.decode(Location.self, from: data)
+            
+            // sort locations by date
+        }.sorted(by: {$0.date < $1.date })
+        
+    }
+    
+    func saveLocationOnDisk(_ location: Location) {
+        
+        // creates a JSON encoder
+        let encoder = JSONEncoder()
+        let timestamp = location.date.timeIntervalSince1970
+        
+        // gets the URL to the file, data timestamp as file name
+        let fileURL = documentsURL.appendingPathComponent("\(timestamp)")
+        
+        // converts location object to raw data (assumes successful conversion)
+        let data = try! encoder.encode(location)
+        
+        // writes data to file (assumes successful write)
+        try! data.write(to: fileURL)
+        
+        // add saved location to local array
+        locations.append(location)
+    }
+    
+    func saveCLLocationToDisk(_ clLocation: CLLocation) {
+        let currentDate = Date()
+        AppDelegate.geoCoder.reverseGeocodeLocation(clLocation) {
+        placemarks, _ in
+            if let place = placemarks?.first {
+                
+                // had to change this line from tutorial, was giving error as given
+                let location = Location(clLocation.coordinate, initialDate: currentDate, locationDescription: "\(place)")
+                
+                self.saveLocationOnDisk(location)
+            }
+        }
     }
 }

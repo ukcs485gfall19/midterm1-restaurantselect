@@ -20,6 +20,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		956C02D12341694700B47615 /* Route.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = Route.gpx; path = "../Journal materials/Journal starter/Route.gpx"; sourceTree = "<group>"; };
 		9606309D233AD0360013BD6F /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		9606309F233ADCF20013BD6F /* TableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
 		960630A1233AE1DA0013BD6F /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
@@ -48,6 +49,7 @@
 		96230861233190FC00B02247 = {
 			isa = PBXGroup;
 			children = (
+				956C02D12341694700B47615 /* Route.gpx */,
 				9623086C233190FC00B02247 /* Midterm1 */,
 				9623086B233190FC00B02247 /* Products */,
 			);

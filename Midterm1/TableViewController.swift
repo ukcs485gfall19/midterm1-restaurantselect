@@ -9,9 +9,13 @@
 import UIKit
 
 class TableViewController: UITableViewController {
-    //Set the number of rows for the table view
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        //Set rows to number of locations stored
-        return LocationStorage.shared.locations.count
+    
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "PlaceCell", for: indexPath)
+        let location = LocationStorage.shared.locations[indexPath.row]
+        cell.textLabel?.numberOfLines = 3
+        cell.textLabel?.text = location.description
+        cell.detailTextLabel?.text = location.dateString
+        return cell
     }
 }
