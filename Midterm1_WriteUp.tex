@@ -21,7 +21,7 @@ jdmo242@uky.edu}
 \and
 \IEEEauthorblockN{Oluwafeyisayo Afolabi}
 \IEEEauthorblockA{\textit{Dept. of Electrical and Computer Engineering} \\
-\textit{University of Kentucky)}\\
+\textit{University of Kentucky}\\
 Lexington, Kentucky \\
 oaaf222@uky.edu}
 \and
@@ -80,10 +80,16 @@ From a coding standpoint, the way that this was implemented took a number of ste
 First, in the main storyboard of the application, we added a navigation bar button
 to the top left of the MapView scene named "Find Food". We then linked this button
 into the MapViewController.swift file to create an IBAction function called findFood().
-Inside of the findFood function, we accomplished several things. The first and 
+Inside of the findFood function, we accomplish several things. The first and 
 most significant task is that the function sends a request to the Yelp Fusion API
 to recieve a JSON object with a list of all the restaurants close to the users current
-application.
+application. After retreiving the JSON object, our code then uses the data to populate
+a structure named BusinessInfo that holds all of the information retrieved from Yelp
+in the same layout as the JSON. Using this structure, the function then calls a seperate
+function that loops through the list of businesses and finds out which restaurant
+is closest to the user's current location. Once it has this business, the findFood
+function then creates a custom pin (defined as another class: CustomPin), and then
+adds it to the map as a MapKit annotation.
 
 \subsection{Functions to be Used in Final Application}
 
