@@ -70,6 +70,15 @@ adding a button in the top left of the navigation bar that says "Find Food." Whe
 pressed, this button will create a pin on the map showing the location of the nearest
 restaurant, with the restaurant name and address as the pin's label.
 
+From a coding standpoint, the way that this was implemented took a number of steps.
+First, in the main storyboard of the application, we added a navigation bar button
+to the top left of the MapView scene named "Find Food". We then linked this button
+into the MapViewController.swift file to create an IBAction function called findFood().
+Inside of the findFood function, we accomplished several things. The first and 
+most significant task is that the function sends a request to the Yelp Fusion API
+to recieve a JSON object with a list of all the restaurants close to the users current
+application.
+
 \subsection{Functions to be Used in Final Application}
 
 \section{Challenges}
