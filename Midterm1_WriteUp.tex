@@ -1,6 +1,4 @@
 \documentclass[conference]{IEEEtran}
-\IEEEoverridecommandlockouts
-% The preceding line is only needed to identify funding in the first footnote. If that is unneeded, please comment it out.
 \usepackage{cite}
 \usepackage{amsmath,amssymb,amsfonts}
 \usepackage{algorithmic}
@@ -14,13 +12,13 @@
 \title{CS485G Midterm 1}
 
 \author{\IEEEauthorblockN{Jonathan Moore}
-\IEEEauthorblockA{\textit{Dept. of Electrical and Computer Engineering} \\
+\IEEEauthorblockA{\textit{College of Engineering} \\
 \textit{University of Kentucky}\\
 Lexington, Kentucky \\
 jdmo242@uky.edu}
 \and
 \IEEEauthorblockN{Oluwafeyisayo Afolabi}
-\IEEEauthorblockA{\textit{Dept. of Electrical and Computer Engineering} \\
+\IEEEauthorblockA{\textit{College of Engineering} \\
 \textit{University of Kentucky}\\
 Lexington, Kentucky \\
 oaaf222@uky.edu}
@@ -51,13 +49,47 @@ interest to it. Another useful feature we gained experience with was the Codable
 protocal, which provides an easy way to allow the app data to be encoded and decoded
 for storage. We also learned how to use various features of the CoreLocation 
 framework such as CLLocationCoordinate2D.
-\section{Original Function}
+
+On top of the features included in the original tutorial, we also added in a few 
+addition functions that work with the Yelp Fusion API and are applicable towards 
+the application we will be developing for the final project. Adding in these features
+provided us with the opportunity to gain an understanding of working with APIs and
+using other frameworks and functions within Swift and Xcode that will be beneficial
+to us when creating our final application.
 
 \section{Functionality}
+For this project, our application function was divided into two main portions:
+the functions that came from the tutorial we chose and the functions that we decided
+to add into the app. Both of these are discussed in detail below.
+
+As a whole, we tried to develop our app using the principles of Model-View-Controller 
+(MVC). The way we accomplished this was by dividing our program in such a way that 
+all of the data storage and structures (the Model) are only accessed by the view
+controllers (the Controller). The view controllers manipulate that data, 
+retrieve new data from outside sources such as the Yelp Fusion API, pass things on
+for the user to see (in the View), and retrieve input from the user. A simple
+chart of how this works for our app is shown as a function diagram in Figure 1
+in the References section.
 
 \subsection{Original Function}
 
 \subsubsection{Baseline App}
+The first step of the tutorial was to recreate the baseline application that the
+tutorial author had given as a download. Since we were not allowed to download
+these materials, we had to create our own version to accomplish the same goal.
+To create this, we used the information at the beginning of the tutorial as an
+outline on what should be included as a starting point. To start, we had to create
+a storyboard that included all of the neccesary elements for the app. This meant 
+making a TabViewController that split into a TableView and MapView scenes. After 
+creating those scenes and the appropriate buttons on them, we had to create 
+ViewController files for each to handle the operations that needed to be done within
+those scenes. Using the MVC pattern, those ViewControllers handle all of "middle man"
+work, accessing any data structures and handling interaction with the user. After
+creating the ViewControllers, we needed a way to store the data recieved so we created
+a class called Location that holds all the needed data about a users location and
+a class called LocationStorage that handles storing the data to the local disk.
+Creating the LocationStorage class gave us experience with the FileManager feature
+of the Foundation framework that makes it very easy to save and load data.
 
 \subsubsection{First Half of Tutorial}
 
@@ -97,6 +129,19 @@ adds it to the map as a MapKit annotation.
 
 \subsection{Challenges in Tutorial}
 
+
 \subsection{Challenges in Additions}
+One large hurdle to overcome when making the extra features was figuring out how
+to properly call the Yelp Fusion API and retrieve the data from that. It took a 
+great deal of research to find out how to correctly use the URLRequest and URLSession
+functions to obtain the JSON file from Yelp. After obtaining the file, another large
+challenge to overcome was figuring out how to parse the JSON file and use it contents.
+We ended up solving this by creating a struct that correlated directly to the contents
+of the JSON, and then used the JSONDecoder class to transfer the contents of the 
+JSON into a struct.
+
+\section{References}
+\textbf{Figure 1:} The function diagram for our application\\
+\includegraphics[width=3in]{Midterm1_Function_Diagram.png}
 
 \end{document}
