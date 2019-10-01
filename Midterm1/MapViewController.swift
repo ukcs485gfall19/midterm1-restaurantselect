@@ -46,6 +46,9 @@ class MapViewController: UIViewController {
         object: nil)
     }
     
+    
+    
+    
     @IBAction func AddLocation(_ sender: Any) {
         
         // save current location
@@ -111,3 +114,21 @@ class MapViewController: UIViewController {
         mapView.addAnnotation(annotation)
     }
 }
+
+/*
+func openGoogleMaps() {
+    
+    if (UIApplication.shared.canOpenURL(URL(string:"comgooglemaps://")!)) {
+        UIApplication.shared.openURL(URL(string:
+            "comgooglemaps://?center=\(latitude),\(longitude)&zoom=14&views=traffic")!)
+    } else {
+        print("Can't use comgooglemaps://")
+    }
+}
+
+ */
+
+// started function to link to google maps
+
+
+
