@@ -23,11 +23,11 @@ jdmo242@uky.edu}
 Lexington, Kentucky \\
 oaaf222@uky.edu}
 \and
-\IEEEauthorblockN{3\textsuperscript{rd} Given Name Surname}
-\IEEEauthorblockA{\textit{dept. name of organization (of Aff.)} \\
-\textit{name of organization (of Aff.)}\\
-City, Country \\
-email address}
+\IEEEauthorblockN{Zac Foster}
+\IEEEauthorblockA{\textit{College of Engineering} \\
+\textit{University of Kentucky}\\
+Lexington, Kentucky \\
+zachary.foster@uky.edu}
 }
 
 \maketitle
@@ -111,6 +111,19 @@ various types of permissions in the info.plist file as well as sending the user
 notifications once a location had been logged.
 
 \subsubsection{Second Half of Tutorial}
+The second half of the tutorial primarily focused on the implementation of two
+distinct features. The first of these features was the ability to record fake
+location data, which is necessary when testing the application on a simulated
+device during the development process. This feature was implemented by using
+Xcode's location simulation tool and intercepting the program when a visit was
+to be recorded and inserting the fake location data instead of actual data.
+Fake visits are given a unique label to make them easily identifiable. The second
+feature implemented is essential to the app's functionality⁠—the ability to store,
+retrieve, and visualize location records. When a visit is recorded, the data is 
+encoded into JSON and written to a local file on the device. The data is then 
+used to populate both the "Location History" list from the first tab, and to
+create an annotation in the map view. On startup, the application loads previously
+stored data and repopulates the list and map view.
 
 \subsection{Added Functions}
 Overall, our team added three additional features to the application that were not 
@@ -158,6 +171,23 @@ If not, Google maps will be opened in the browser and the current location and
 destination will be pre-filled based on the users current location and the 
 destination they selected in the app.
 
+\subsubsection{Providing Additional Restaurant Data}
+Previously, when the aforementioned "Find Food" button was pressed, the application
+simply created a new annotation on the map, centered at the restaurant's location
+and with a title containing the restaurant's name. Ideally, however, our app will
+provide more detailed information about the restaurant that was found, especially
+considering the Yelp API provides much of this data. Our third addition was to
+create an additional pop-up dialog when a restaurant was located, displaying its
+name, address, user rating, URL, and so on. This was acheived by creating an
+additional view controller in the main storyboard, with views for each of the
+appropriate data fields that are to be displayed. Using the main storyboard and
+the findFood function, the functionality of the "Find Food" button was modified
+to bring up this new dialog when clicked. After a restaurant has been found and the
+information is loaded, the data is assigned to the appropriate views in the new view
+controller. The user can browse the information and click on the restaurant's URL if
+desired, or they can select the back button to return to the map view, where they
+can see the location of the restaurant via the new map annotation.
+
 \subsection{Functions to be Used in Final Application}
 For the most part, this tutorial served as a way to familiarize ourselves with 
 Swift and different frameworks. Most of the features from the original tutorial
@@ -194,8 +224,37 @@ was to simply raise my CLLocationManager instance from being a method-level vari
 class-level variable, so we took it out from the didFinishLaunchingWithOptions function and 
 placed it at the top of the AppDelegate class. This made sure that the instance wasn't 
 disappearing as soon as it was loaded. 
-\subsubsection{Second Half of Tutorial}
 
+\subsubsection{Second Half of Tutorial}
+As we completed the second half of the tutorial, it seemed as though some sections of the
+tutorial were outdated or that important excerpts of the required code were ommitted, as
+there were several speedbumps in getting our app to work as the tutorial intended. One of
+the most prominant hurdles we encountered in this half appeared after implementing the 
+"Fake Visits" feature; when the line "locationManager.allowsBackgroundLocationUpdates"
+was run, the application crashed and the SIGABRT signal was raised. Error messages from
+the console seemed to imply that the program did not have permissions to utilize location
+services in the background. Strangely, the simulated device's location permissions checked
+out, and the program's Info.plist file had been modified to include the two keys shown in 
+the tutorial, yet the error still occurred. After a few hours of attempting to diagnose 
+the issue, we discovered that a third key called UIBackgroundModes, which appears to be 
+unmentioned by the tutorial, is needed to modify allowsBackgroundLocationUpdates.
+Additionally, the name of this key has changed in recent versions, and is now called 
+"Required background modes," which made identifying the issue even more challenging.
+
+After resolving the issues with the fake visits feature and attempting to implement
+location data retention, another speedbump was encountered. When clicking the plus
+button to add a new location to the list, nothing appeared to be happening and the 
+Location History list remained empty. Upon restarting the app, we noticed that the
+annotations were being added to the map, but the list was still unpopulated. After a
+few hours debugging the program, we couldn't find any inconsistancies in our code, but
+we noticed that one of the functions that was responsible for populating the list was
+never being called. Eventuall we decided to compare our code with the finalized code
+from the tutorial website, and found that there were a few functions in 
+TableViewController.swift that we did not have and that did not seem to be given in 
+the walkthrough. We added these and found that the aforementioned function was now
+being called correctly, but an inconsistency in the name for the Table View's cells
+was causing another SIGABRT. After resolving these inconsistencies, the application
+began working as intended, and the list displayed the location history correctly.
 
 \subsection{Challenges in Additions}
 One large hurdle to overcome when making the extra features was figuring out how
@@ -206,6 +265,17 @@ challenge to overcome was figuring out how to parse the JSON file and use it con
 We ended up solving this by creating a struct that correlated directly to the contents
 of the JSON, and then used the JSONDecoder class to transfer the contents of the 
 JSON into a struct.
+
+Another difficulty came about when trying to create the pop-up containing additional
+restaurant information. Originally, our plan was to have a small pop-up window appear
+at the bottom of the screen when a restaurant annotation was clicked, and the 
+additional data would be displayed there. This proved to be too complicated for the
+scope of the tutorial, however, as the process of detecting when an annotation is 
+clicked was made very difficult due to our implementation of a unique MKAnnotation
+class, and the didSelectAnnotationView funtion did not appear to be working. 
+Additionally, there did not seem to be a built in view object for a pop-up window
+to display over another view. This is a feature that will ideally be present in our 
+final application, so this is an undertaking we will likely look into in the future.
 
 \section{References}
 \textbf{Figure 1:} The function diagram for our application\\
