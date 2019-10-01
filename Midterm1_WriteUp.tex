@@ -92,7 +92,23 @@ Creating the LocationStorage class gave us experience with the FileManager featu
 of the Foundation framework that makes it very easy to save and load data.
 
 \subsubsection{First Half of Tutorial}
-This first half of the tutorial after the baseline app had already been created mainly focused on asking for the users permissions in-app to do things such as track their location and also send them notifications. To do this we simply had to add two special strings to the info.plist file which asked the user for permission to track their location. After this, we then added some lines of code asking the user for permission to send them notifications as our app sends notifications letting the user know when they've logged a new location. The next step in the tutorial was choosing the most appropriate locations data. To do this we relied on the visit monitoring API which allows us to track destinations and has the huge benefit of having low battery impact. The next step of the tutorial was to then implement reverse geocoding, which is the process of converting coordinates into locations/ real world addresses and CoreLocation has a class called CLGeoCoder that does that for us. Finally we added functionality that would notify the user with a banner notification when a new location was logged. This part of the tutorial exposed us to asking for various types of permissions in the info.plist file as well as sending the user notifications once a location had been logged.
+This first half of the tutorial after the baseline app had already been 
+created mainly focused on asking for the users permissions in-app to do 
+things such as track their location and also send them notifications. To do 
+this we simply had to add two special strings to the info.plist file which 
+asked the user for permission to track their location. After this, we then 
+added some lines of code asking the user for permission to send them notifications 
+as our app sends notifications letting the user know when they've logged a new 
+location. The next step in the tutorial was choosing the most appropriate locations 
+data. To do this we relied on the visit monitoring API which allows us to track 
+destinations and has the huge benefit of having low battery impact. The next 
+step of the tutorial was to then implement reverse geocoding, which is the 
+process of converting coordinates into locations/ real world addresses and 
+CoreLocation has a class called CLGeoCoder that does that for us. Finally we 
+added functionality that would notify the user with a banner notification when 
+a new location was logged. This part of the tutorial exposed us to asking for 
+various types of permissions in the info.plist file as well as sending the user 
+notifications once a location had been logged.
 
 \subsubsection{Second Half of Tutorial}
 
@@ -126,7 +142,21 @@ adds it to the map as a MapKit annotation.
 
 \subsubsection{Linking to external maps app or browser}
 
-The Core Location app and our final app idea are similar in the sense that they don't give the user directions to any restaurants that are logged in the TableView or that show up on the MapView. Our idea is to reroute the user to their local Google maps app when they click on a location and if they don't have the app, to then open Google maps up in a browser. This is mainly to reduce the strain on our app and so it does not have high impact on a battery standpoint. To do this, we will be using the Google maps platform API, which is very straightforward to use. To do this we first had to add a special LSApplicationQueriesSchemes string to the info.plist file containing comgooglemaps and googlechromes. After doing this, a function called OpenGoogleMaps will then be implemented that takes the latitude and longitude of the desired location and then first checks if the user has the Google maps app on their phone. If not, Google maps will be opened in the browser and the current location and destination will be pre-filled based on the users current location and the destination they selected in the app.
+The Core Location app and our final app idea are similar in the 
+sense that they don't give the user directions to any restaurants that 
+are logged in the TableView or that show up on the MapView. Our idea is to 
+reroute the user to their local Google maps app when they click on a location 
+and if they don't have the app, to then open Google maps up in a browser. This 
+is mainly to reduce the strain on our app and so it does not have high impact 
+on a battery standpoint. To do this, we will be using the Google maps platform 
+API, which is very straightforward to use. To do this we first had to add a 
+special LSApplicationQueriesSchemes string to the info.plist file containing 
+comgooglemaps and googlechromes. After doing this, a function called OpenGoogleMaps 
+will then be implemented that takes the latitude and longitude of the desired 
+location and then first checks if the user has the Google maps app on their phone. 
+If not, Google maps will be opened in the browser and the current location and 
+destination will be pre-filled based on the users current location and the 
+destination they selected in the app.
 
 \subsection{Functions to be Used in Final Application}
 
@@ -135,7 +165,18 @@ The Core Location app and our final app idea are similar in the sense that they 
 \subsection{Challenges in Tutorial}
 \subsubsection{Baseline App}
 \subsubsection{First Half of Tutorial}
-The main challenge we faced in this part of the tutorial was getting the permission banner for tracking the users location to remain on the screen. When the code was added to ask for permission and the app was built, the location permission banner would only flash on the screen and then disappear, not allowing enough time for the user to choose if they wanted to allow the app to track their location or not. This bug took a while to figure out and we got the answer from stack overflow. This was happening because we created the CLLocationManager instance in the didFinishLaunchingWithOptions function and once this function had finished running, the dialog disappeared. The solution was to simply raise my CLLocationManager instance from being a method-level variable to a class-level variable, so we took it out from the didFinishLaunchingWithOptions function and placed it at the top of the AppDelegate class. This made sure that the instance wasn't disappearing as soon as it was loaded. 
+The main challenge we faced in this part of the tutorial was getting the permission 
+banner for tracking the users location to remain on the screen. When the code was 
+added to ask for permission and the app was built, the location permission banner 
+would only flash on the screen and then disappear, not allowing enough time for the 
+user to choose if they wanted to allow the app to track their location or not. This bug 
+took a while to figure out and we got the answer from stack overflow. This was happening 
+because we created the CLLocationManager instance in the didFinishLaunchingWithOptions 
+function and once this function had finished running, the dialog disappeared. The solution 
+was to simply raise my CLLocationManager instance from being a method-level variable to a 
+class-level variable, so we took it out from the didFinishLaunchingWithOptions function and 
+placed it at the top of the AppDelegate class. This made sure that the instance wasn't 
+disappearing as soon as it was loaded. 
 \subsubsection{Second Half of Tutorial}
 
 
