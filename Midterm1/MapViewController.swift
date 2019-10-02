@@ -17,6 +17,14 @@ class CustomPin: NSObject, MKAnnotation{
     var title: String?
     var subtitle: String?
     
+    //var categories: [Category?]
+    var display_phone: String?
+    var image_url: String?
+    var price: String?
+    var rating: Double?
+    var review_count: Int?
+    var url: String?
+    
     init(location: CLLocationCoordinate2D, pinTitle: String, pinSubtitle: String){
         coordinate = location
         title = pinTitle
@@ -47,9 +55,6 @@ class MapViewController: UIViewController {
         name: .newLocationSaved,
         object: nil)
     }
-    
-    
-    
     
     @IBAction func AddLocation(_ sender: Any) {
         
@@ -89,7 +94,16 @@ class MapViewController: UIViewController {
                 self.mapView.showsUserLocation = true;
                 self.mapView.setRegion(region, animated: true)
                 let businessPin = CustomPin(location: location, pinTitle: (closestBusiness.name)!, pinSubtitle: "\((closestBusiness.location?.address1)!)\n\((closestBusiness.location?.city)!), \((closestBusiness.location?.state)!)")
+                // add details of business pin
+                businessPin.display_phone = closestBusiness.display_phone
+                businessPin.image_url = closestBusiness.image_url
+                businessPin.price = closestBusiness.price
+                businessPin.rating = closestBusiness.rating
+                businessPin.review_count = closestBusiness.review_count
+                businessPin.url = closestBusiness.url
+                // add new pin to map view
                 self.mapView.addAnnotation(businessPin)
+                
             } catch let parsingError as NSError{
                 print("Error", parsingError)
             }
@@ -124,6 +138,15 @@ class MapViewController: UIViewController {
 
 extension MapViewController: MKMapViewDelegate {
 
+    func createDetailView(_ CustomPin: CustomPin) -> UIStackView {
+        // create views for each of the CustomPin properties, then assign to stack view
+        
+        
+        let detailView = UIStackView()
+        detailView.axis = .vertical
+        return UIStackView()
+    }
+    
     // creates a new AnnotationView for each added CustomPin annotation. this
     // function was taken from the MapKit tutorial at
     // https://www.raywenderlich.com/548-mapkit-tutorial-getting-started#toc-anchor-007
