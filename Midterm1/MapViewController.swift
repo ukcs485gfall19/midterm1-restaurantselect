@@ -23,7 +23,7 @@ class CustomPin: NSObject, MKAnnotation{
     var price: String?
     var rating: Double?
     var review_count: Int?
-    var url: String?
+    var url: String? // currently unused, will eventually launch app's website
     
     init(location: CLLocationCoordinate2D, pinTitle: String, pinSubtitle: String){
         coordinate = location
@@ -137,21 +137,13 @@ class MapViewController: UIViewController {
 }
 
 extension MapViewController: MKMapViewDelegate {
-
-    func createDetailView(_ CustomPin: CustomPin) -> UIStackView {
-        // create views for each of the CustomPin properties, then assign to stack view
-        
-        
-        let detailView = UIStackView()
-        detailView.axis = .vertical
-        return UIStackView()
-    }
     
     // creates a new AnnotationView for each added CustomPin annotation. this
     // function was taken from the MapKit tutorial at
     // https://www.raywenderlich.com/548-mapkit-tutorial-getting-started#toc-anchor-007
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         
+        // ensure the current annotation is the CustomPin type
         guard let annotation = annotation as? CustomPin else { return nil }
         
         let tempID = "CPAnnotation"
@@ -163,9 +155,51 @@ extension MapViewController: MKMapViewDelegate {
             view = dequeuedView
         } else {
          
+            // create view for this restaurant annotation and give it a callout popup
             view = MKMarkerAnnotationView(annotation: annotation, reuseIdentifier: tempID)
             view.canShowCallout = true
-            view.rightCalloutAccessoryView = UIButton(type: .detailDisclosure)
+            
+            /* will eventually use this section to add images of restaurants
+             
+            let tempUrl = URL(string: annotation.image_url!)!
+            let tempData = try! Data(contentsOf: tempUrl)
+            let imageView = UIImageView()
+            imageView.contentMode = .scaleAspectFit
+            imageView.image = UIImage(data: tempData)
+            */
+            
+            // create detail view and add to annotation
+            let detailView = UIStackView()
+            view.detailCalloutAccessoryView = detailView
+            
+            // create views for each of the CustomPin properties, then assign to stack view
+            let addressView = UILabel()
+            let phoneAndPriceView = UIStackView()
+            phoneAndPriceView.axis = .horizontal
+            phoneAndPriceView.distribution = .equalSpacing
+            let phoneView = UILabel()
+            let priceView = UILabel()
+            phoneAndPriceView.addArrangedSubview(phoneView)
+            phoneAndPriceView.addArrangedSubview(priceView)
+            let reView = UILabel()
+            detailView.addArrangedSubview(addressView)
+            detailView.addArrangedSubview(phoneAndPriceView)
+            detailView.addArrangedSubview(reView)
+            detailView.axis = .vertical
+            detailView.distribution = .equalCentering
+            
+            // modify view for address
+            addressView.textColor = .darkGray
+            addressView.text = annotation.subtitle
+            // modify view for phone number
+            phoneView.textColor = .darkGray
+            phoneView.text = annotation.display_phone
+            // modify view for price
+            priceView.textColor = .darkGray
+            priceView.text = annotation.price
+            // modify view for review score
+            reView.textColor = .darkGray
+            reView.text = "Rated \(String(describing: annotation.rating!)) stars from \(String(describing: annotation.review_count!)) reviews"
         }
         
         return view
