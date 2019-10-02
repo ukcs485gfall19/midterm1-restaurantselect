@@ -34,6 +34,8 @@ class MapViewController: UIViewController {
         super.viewDidLoad()
         mapView.userTrackingMode = .follow
         
+        mapView.delegate = self
+        
         // generates pins from previous locations, adds to map
         let annotations = LocationStorage.shared.locations.map { annotationForLocation($0) }
         mapView.addAnnotations(annotations)
@@ -112,6 +114,38 @@ class MapViewController: UIViewController {
         
         let annotation = annotationForLocation(location)
         mapView.addAnnotation(annotation)
+    }
+    
+    // detects when a pin has been clicked
+    func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
+          print("pin clicked")
+    }
+}
+
+extension MapViewController: MKMapViewDelegate {
+
+    // creates a new AnnotationView for each added CustomPin annotation. this
+    // function was taken from the MapKit tutorial at
+    // https://www.raywenderlich.com/548-mapkit-tutorial-getting-started#toc-anchor-007
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        
+        guard let annotation = annotation as? CustomPin else { return nil }
+        
+        let tempID = "CPAnnotation"
+        var view: MKAnnotationView
+        
+        if let dequeuedView = mapView.dequeueReusableAnnotationView(withIdentifier: tempID) as? MKMarkerAnnotationView {
+                
+            dequeuedView.annotation = annotation
+            view = dequeuedView
+        } else {
+         
+            view = MKMarkerAnnotationView(annotation: annotation, reuseIdentifier: tempID)
+            view.canShowCallout = true
+            view.rightCalloutAccessoryView = UIButton(type: .detailDisclosure)
+        }
+        
+        return view
     }
 }
 
