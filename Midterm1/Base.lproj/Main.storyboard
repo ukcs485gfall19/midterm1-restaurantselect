@@ -42,7 +42,7 @@
                             </barButtonItem>
                             <barButtonItem title="Get Directions" id="zBE-rE-qxe">
                                 <connections>
-                                    <action selector="LinkToGoogleMaps:" destination="PZM-G6-jUj" id="l8e-ck-jws"/>
+                                    <action selector="GetDirections:" destination="PZM-G6-jUj" id="7KK-AS-bFh"/>
                                 </connections>
                             </barButtonItem>
                         </rightBarButtonItems>

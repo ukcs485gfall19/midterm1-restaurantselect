@@ -56,35 +56,40 @@ class MapViewController: UIViewController {
         object: nil)
     }
     
+   
     @IBAction func GetDirections(_ sender: Any) {
         
         // using URL to try to open apple maps
-        if (UIApplication.shared.canOpenURL(NSURL(string:"http://maps.apple.com")! as URL)) {
-            UIApplication.shared.openURL(NSURL(string:
-                "http://maps.apple.com/?daddr=San+Francisco,+CA&saddr=cupertino")! as URL)
-        } else {
-            NSLog("Can't use Apple Maps");
-        }
         
-        
-        
-        //using MKMapItem.openMaps to try to open apple maps
         /*
-        let lat: CLLocationDegrees = 37.9885 //testing fayette mall coordinates
-        let lng: CLLocationDegrees = 84.5284 //testing fayette mall coordinates
-        let currentLocationLatitude = mapView.userLocation.coordinate.latitude
-        let currentLocationLongitude = mapView.userLocation.coordinate.longitude
+        UIApplication.shared.open(URL(string: "http://maps.apple.com")!)
         
-        let source = MKMapItem(placemark: MKPlacemark(coordinate: CLLocationCoordinate2D(latitude: currentLocationLatitude, longitude: currentLocationLongitude)))
-        source.name = "Source"
+         if (UIApplication.shared.openURL(NSURL(string:"http://maps.apple.com")! as URL)) {
+         UIApplication.shared.openURL(NSURL(string:
+         "http://maps.apple.com/?daddr=San+Francisco,+CA&saddr=cupertino")! as URL)
+         } else {
+         NSLog("Can't use Apple Maps");
+         }
+         
+         */
         
-        let destination = MKMapItem(placemark: MKPlacemark(coordinate: CLLocationCoordinate2D(latitude: lat, longitude: lng)))
-        destination.name = "Destination"
         
-        MKMapItem.openMaps(with: [source, destination], launchOptions: [MKLaunchOptionsDirectionsModeKey: MKLaunchOptionsDirectionsModeDriving])
+        //using MKMapItem.openMaps to open apple maps
         
-    */
-        
+         let lat: CLLocationDegrees = 37.9885 //testing fayette mall coordinates
+         let lng: CLLocationDegrees = -84.5284 //testing fayette mall coordinates
+         let currentLocationLatitude = mapView.userLocation.coordinate.latitude
+         let currentLocationLongitude = mapView.userLocation.coordinate.longitude
+         
+         let source = MKMapItem(placemark: MKPlacemark(coordinate: CLLocationCoordinate2D(latitude: currentLocationLatitude, longitude: currentLocationLongitude)))
+         source.name = "Source"
+         
+         let destination = MKMapItem(placemark: MKPlacemark(coordinate: CLLocationCoordinate2D(latitude: lat, longitude: lng)))
+         destination.name = "Destination"
+         
+         MKMapItem.openMaps(with: [source, destination], launchOptions: [MKLaunchOptionsDirectionsModeKey: MKLaunchOptionsDirectionsModeDriving])
+         
+         
     }
     
     
