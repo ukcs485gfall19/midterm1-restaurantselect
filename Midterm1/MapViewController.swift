@@ -59,39 +59,28 @@ class MapViewController: UIViewController {
    
     @IBAction func GetDirections(_ sender: Any) {
         
-        // using URL to try to open apple maps
-        
-        /*
-        UIApplication.shared.open(URL(string: "http://maps.apple.com")!)
-        
-         if (UIApplication.shared.openURL(NSURL(string:"http://maps.apple.com")! as URL)) {
-         UIApplication.shared.openURL(NSURL(string:
-         "http://maps.apple.com/?daddr=San+Francisco,+CA&saddr=cupertino")! as URL)
-         } else {
-         NSLog("Can't use Apple Maps");
-         }
-         
-         */
-        
-        
         //using MKMapItem.openMaps to open apple maps
         
-         let lat: CLLocationDegrees = 37.9885 //testing fayette mall coordinates
-         let lng: CLLocationDegrees = -84.5284 //testing fayette mall coordinates
+        // getting destination coordinates
+         let center = mapView.centerCoordinate
+         let lat = center.latitude
+         let long = center.longitude
+        
+        //getting user location coordinates
          let currentLocationLatitude = mapView.userLocation.coordinate.latitude
          let currentLocationLongitude = mapView.userLocation.coordinate.longitude
          
          let source = MKMapItem(placemark: MKPlacemark(coordinate: CLLocationCoordinate2D(latitude: currentLocationLatitude, longitude: currentLocationLongitude)))
-         source.name = "Source"
+         source.name = "Current Location"
          
-         let destination = MKMapItem(placemark: MKPlacemark(coordinate: CLLocationCoordinate2D(latitude: lat, longitude: lng)))
+         let destination = MKMapItem(placemark: MKPlacemark(coordinate: CLLocationCoordinate2D(latitude: lat, longitude: long)))
          destination.name = "Destination"
          
          MKMapItem.openMaps(with: [source, destination], launchOptions: [MKLaunchOptionsDirectionsModeKey: MKLaunchOptionsDirectionsModeDriving])
-         
-         
+        
+        
     }
-    
+
     
     
     
@@ -171,7 +160,11 @@ class MapViewController: UIViewController {
     
     // detects when a pin has been clicked
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
+        let coord = mapView.centerCoordinate
+        let lat1 = coord.latitude
+        let long1 = coord.longitude
           print("pin clicked")
+          print("The latitude is \(lat1) and the longitude is \(long1).")
     }
 }
 
@@ -248,21 +241,7 @@ extension MapViewController: MKMapViewDelegate {
  
 }
 
-/*
-func openGoogleMaps() {
-    
-    if (UIApplication.shared.canOpenURL(URL(string:"comgooglemaps://")!)) {
-        UIApplication.shared.openURL(URL(string:
-            "comgooglemaps://?center=\(latitude),\(longitude)&zoom=14&views=traffic")!)
-    } else {
-        print("Can't use comgooglemaps://")
-    }
- 
-}
-*/
 
-
-// started function to link to google maps
 
 
 
