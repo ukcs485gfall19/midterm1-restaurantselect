@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="xoP-6p-Ha4">
-    <device id="retina6_1" orientation="portrait" appearance="light"/>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="xoP-6p-Ha4">
+    <device id="retina6_1" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -21,21 +23,29 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </mapView>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="N4u-Xo-NBo"/>
                     </view>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="KaT-eH-brW" userLabel="Navigation Item">
+                        <nil key="title"/>
                         <barButtonItem key="leftBarButtonItem" title="Find Food" id="EAr-Yj-gnI">
                             <connections>
                                 <action selector="findFood:" destination="PZM-G6-jUj" id="zWu-ih-dQm"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="Add" image="plus" catalog="system" id="ZyN-Ek-lIU">
-                            <connections>
-                                <action selector="AddLocation:" destination="PZM-G6-jUj" id="ufn-bS-McM"/>
-                            </connections>
-                        </barButtonItem>
+                        <rightBarButtonItems>
+                            <barButtonItem title="Add" image="plus" id="ZyN-Ek-lIU">
+                                <connections>
+                                    <action selector="AddLocation:" destination="PZM-G6-jUj" id="ufn-bS-McM"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem title="Get Directions" id="zBE-rE-qxe">
+                                <connections>
+                                    <action selector="LinkToGoogleMaps:" destination="PZM-G6-jUj" id="l8e-ck-jws"/>
+                                </connections>
+                            </barButtonItem>
+                        </rightBarButtonItems>
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
@@ -68,7 +78,7 @@
         <scene sceneID="gvX-Gc-vG3">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="ulZ-Y8-pAw" userLabel="Map" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Map" image="map" catalog="system" id="zAy-Bf-Wby"/>
+                    <tabBarItem key="tabBarItem" title="Map" image="map" id="zAy-Bf-Wby"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="eS8-Zq-DFH">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
@@ -87,7 +97,7 @@
         <scene sceneID="YYO-tu-QfJ">
             <objects>
                 <navigationController title="LocationHistory" automaticallyAdjustsScrollViewInsets="NO" id="Oo2-A1-qxf" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="List" image="clock" catalog="system" id="RtY-vD-0i4"/>
+                    <tabBarItem key="tabBarItem" title="List" image="clock" id="RtY-vD-0i4"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="eNr-yj-KGr">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
@@ -109,10 +119,10 @@
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="TTl-HW-zPR">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="LocationHistory" id="4VR-2M-rW1">
-                                <rect key="frame" x="0.0" y="28" width="414" height="43.5"/>
+                                <rect key="frame" x="0.0" y="28" width="414" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="4VR-2M-rW1" id="FZ5-KE-R4W">
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
@@ -133,8 +143,8 @@
         </scene>
     </scenes>
     <resources>
-        <image name="clock" catalog="system" width="64" height="62"/>
-        <image name="map" catalog="system" width="64" height="58"/>
-        <image name="plus" catalog="system" width="64" height="58"/>
+        <image name="clock" width="64" height="62"/>
+        <image name="map" width="64" height="58"/>
+        <image name="plus" width="64" height="58"/>
     </resources>
 </document>
