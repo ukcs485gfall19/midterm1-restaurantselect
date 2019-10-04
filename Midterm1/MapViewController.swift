@@ -58,8 +58,20 @@ class MapViewController: UIViewController {
     
     @IBAction func GetDirections(_ sender: Any) {
         
-        let lat: CLLocationDegrees = 37.9885
-        let lng: CLLocationDegrees = 84.5284
+        // using URL to try to open apple maps
+        if (UIApplication.shared.canOpenURL(NSURL(string:"http://maps.apple.com")! as URL)) {
+            UIApplication.shared.openURL(NSURL(string:
+                "http://maps.apple.com/?daddr=San+Francisco,+CA&saddr=cupertino")! as URL)
+        } else {
+            NSLog("Can't use Apple Maps");
+        }
+        
+        
+        
+        //using MKMapItem.openMaps to try to open apple maps
+        /*
+        let lat: CLLocationDegrees = 37.9885 //testing fayette mall coordinates
+        let lng: CLLocationDegrees = 84.5284 //testing fayette mall coordinates
         let currentLocationLatitude = mapView.userLocation.coordinate.latitude
         let currentLocationLongitude = mapView.userLocation.coordinate.longitude
         
@@ -70,6 +82,8 @@ class MapViewController: UIViewController {
         destination.name = "Destination"
         
         MKMapItem.openMaps(with: [source, destination], launchOptions: [MKLaunchOptionsDirectionsModeKey: MKLaunchOptionsDirectionsModeDriving])
+        
+    */
         
     }
     
